@@ -2,6 +2,8 @@ package com.ocenanovivo.oceanovivo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +31,7 @@ public class Ong {
         joinColumns = @JoinColumn(name = "id_ong"),
         inverseJoinColumns = @JoinColumn(name = "id_deteccao")
     )
+    @JsonIgnore
     private List<Deteccao> deteccoes;
 }
 

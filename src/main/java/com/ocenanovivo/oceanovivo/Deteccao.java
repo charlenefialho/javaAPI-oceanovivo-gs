@@ -1,14 +1,18 @@
 package com.ocenanovivo.oceanovivo;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -37,15 +41,16 @@ public class Deteccao {
     @ManyToOne
     @JoinColumn(name = "id_especie")
     private Especie especie;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "Ong_Deteccao",
+        joinColumns = @JoinColumn(name = "id_deteccao"),
+        inverseJoinColumns = @JoinColumn(name = "id_ong")
+    )
+    
+    private Set<Ong> ongs;
+    
 
-	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setOngs(Set<Ong> ongs) {
-		// TODO Auto-generated method stub
-		
-	}
 }
 

@@ -2,6 +2,8 @@ package com.ocenanovivo.oceanovivo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,5 +25,6 @@ public class Localizacao {
     private String pais;
 
     @OneToMany(mappedBy = "localizacao")
+    @JsonIgnore
     private List<Deteccao> deteccoes;
 }

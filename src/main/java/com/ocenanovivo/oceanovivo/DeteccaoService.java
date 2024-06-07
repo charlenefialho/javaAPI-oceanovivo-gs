@@ -1,9 +1,9 @@
 package com.ocenanovivo.oceanovivo;	
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class DeteccaoService {
             throw new IllegalArgumentException("Detecção não encontrada");
         }
         Deteccao deteccao = convertToEntity(deteccaoDTO);
-        deteccao.setId(id);
+        deteccao.setIdDeteccao(id);
         return deteccaoRepository.save(deteccao);
     }
 
@@ -71,12 +71,19 @@ public class DeteccaoService {
                 .orElseThrow(() -> new IllegalArgumentException("Espécie não encontrada"));
         deteccao.setEspecie(especie);
 
-        Set<Ong> ongs = deteccaoDTO.getOngIds().stream()
-                .map(id -> ongRepository.findById(id)
-                        .orElseThrow(() -> new IllegalArgumentException("ONG não encontrada: " + id)))
-                .collect(Collectors.toSet());
+        Set<Long> ongIds = deteccaoDTO.getOngIds();
+        Set<Ong> ongs = new HashSet<>();
+
+        for (Long ongId : ongIds) {
+            Ong ong = ongRepository.findById(ongId)
+                    .orElseThrow(() -> new IllegalArgumentException("ONG não encontrada: " + ongId));
+            ongs.add(ong);
+        }
+
         deteccao.setOngs(ongs);
 
         return deteccao;
     }
+
+
 }

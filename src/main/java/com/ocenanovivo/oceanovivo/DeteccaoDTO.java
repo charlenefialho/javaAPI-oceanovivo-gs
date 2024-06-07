@@ -1,14 +1,15 @@
 package com.ocenanovivo.oceanovivo;
 
+import java.time.LocalDateTime;
+import java.util.Set;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-import java.util.Set;
-
 @Data
 public class DeteccaoDTO {
+    
     @NotNull(message = "A URL da imagem é obrigatória.")
     @Size(max = 255, message = "A URL da imagem deve ter no máximo 255 caracteres.")
     private String urlImagem;
