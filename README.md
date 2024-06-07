@@ -22,5 +22,58 @@ A API de Identificação Automática de Espécies Marinhas é um sistema baseado
 4. Execute a aplicação utilizando o comando `mvn spring-boot:run`.
 5. Acesse a documentação da API em `http://localhost:8080/swagger-ui.html`.
 
-## Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request com melhorias ou correções.
+### Integrantes do grupo
+> Charlene reponsável por toda a criação da API.
+> 
+> Bianca responsável pela entrega de front.
+> 
+> Fabricio responsável pela entrega de BD.
+> 
+> Lucca responsável pela entrega de Devops, QA e .NET
+> 
+> Laís responsável pela entrega de IA.
+<table>
+  <tr>
+        <td align="center">
+      <a href="https://github.com/biancaroman">
+        <img src="https://avatars.githubusercontent.com/u/128830935?v=4" width="100px;" border-radius='50%' alt="Bianca Román's photo on GitHub"/><br>
+        <sub>
+          <b>Bianca Román</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/charlenefialho">
+        <img src="https://avatars.githubusercontent.com/u/94643076?v=4" width="100px;" border-radius='50%' alt="Charlene Aparecida's photo on GitHub"/><br>
+        <sub>
+          <b>Charlene Aparecida</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/laiscrz">
+        <img src="https://avatars.githubusercontent.com/u/133046134?v=4" width="100px;" alt="Lais Alves's photo on GitHub"/><br>
+        <sub>
+          <b>Lais Alves</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/LuccaRaphael">
+        <img src="https://avatars.githubusercontent.com/u/127765063?v=4" width="100px;" border-radius='50%' alt="Lucca Raphael's photo on GitHub"/><br>
+        <sub>
+          <b>Lucca Raphael</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="https://github.com/Fabs0602">
+        <img src="https://avatars.githubusercontent.com/u/111320639?v=4" width="100px;" border-radius='50%' alt="Fabricio Torres's photo on GitHub"/><br>
+        <sub>
+          <b>Fabricio Torres</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
