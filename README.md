@@ -23,15 +23,6 @@ A API de Identificação Automática de Espécies Marinhas é um sistema baseado
 5. Acesse a documentação da API em `http://localhost:8080/swagger-ui.html`.
 
 ### Integrantes do grupo
-> Charlene reponsável por toda a criação da API.
-> 
-> Bianca responsável pela entrega de front.
-> 
-> Fabricio responsável pela entrega de BD.
-> 
-> Lucca responsável pela entrega de Devops, QA e .NET
-> 
-> Laís responsável pela entrega de IA.
 <table>
   <tr>
         <td align="center">
