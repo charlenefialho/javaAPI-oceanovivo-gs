@@ -6,6 +6,7 @@ A API de Identificação Automática de Espécies Marinhas é um sistema baseado
 ## Funcionalidades Principais
 - Armazenamento de dados de detecção de espécies marinhas em um banco de dados.
 - Consulta de dados de detecção de espécies através da API.
+- Filtragem de ongs que possuem foco numa determinada categoria de animal para envio de sinalização.
 
 ## Tecnologias Utilizadas
 - Linguagem de Programação: Java
