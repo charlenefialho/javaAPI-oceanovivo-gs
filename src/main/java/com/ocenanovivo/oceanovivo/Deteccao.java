@@ -1,6 +1,8 @@
 package com.ocenanovivo.oceanovivo;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class Deteccao {
     private String urlImagem;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dataDeteccao;
+    private LocalDateTime dataDeteccao;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -35,5 +37,15 @@ public class Deteccao {
     @ManyToOne
     @JoinColumn(name = "id_especie")
     private Especie especie;
+
+	public void setId(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setOngs(Set<Ong> ongs) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

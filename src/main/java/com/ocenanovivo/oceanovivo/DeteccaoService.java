@@ -1,88 +1,82 @@
-package com.ocenanovivo.oceanovivo;
+package com.ocenanovivo.oceanovivo;	
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DeteccaoService {
 
-    @Autowired
-    private DeteccaoRepository deteccaoRepository;
+    private final DeteccaoRepository deteccaoRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final LocalizacaoRepository localizacaoRepository;
+    private final EspecieRepository especieRepository;
+    private final OngRepository ongRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private LocalizacaoRepository localizacaoRepository;
-
-    @Autowired
-    private EspecieRepository especieRepository;
-
-    public List<DeteccaoDTO> findAll() {
-        return deteccaoRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public DeteccaoService(DeteccaoRepository deteccaoRepository, UsuarioRepository usuarioRepository,
+                           LocalizacaoRepository localizacaoRepository, EspecieRepository especieRepository,
+                           OngRepository ongRepository) {
+        this.deteccaoRepository = deteccaoRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.localizacaoRepository = localizacaoRepository;
+        this.especieRepository = especieRepository;
+        this.ongRepository = ongRepository;
     }
 
-    public Optional<DeteccaoDTO> findById(Long id) {
-        return deteccaoRepository.findById(id)
-                .map(this::convertToDTO);
-    }
-
-    @Transactional
-    public DeteccaoDTO save(DeteccaoDTO deteccaoDTO) {
+    public Deteccao save(DeteccaoDTO deteccaoDTO) {
         Deteccao deteccao = convertToEntity(deteccaoDTO);
-        Deteccao savedDeteccao = deteccaoRepository.save(deteccao);
-        return convertToDTO(savedDeteccao);
+        return deteccaoRepository.save(deteccao);
     }
 
-    @Transactional
-    public void deleteById(Long id) {
+    public Deteccao update(Long id, DeteccaoDTO deteccaoDTO) {
+        if (!deteccaoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Detecção não encontrada");
+        }
+        Deteccao deteccao = convertToEntity(deteccaoDTO);
+        deteccao.setId(id);
+        return deteccaoRepository.save(deteccao);
+    }
+
+    public void delete(Long id) {
         deteccaoRepository.deleteById(id);
     }
 
-    @Transactional
-    public Optional<DeteccaoDTO> update(Long id, DeteccaoDTO deteccaoDTO) {
-        return deteccaoRepository.findById(id).map(existingDeteccao -> {
-            updateEntityFromDTO(deteccaoDTO, existingDeteccao);
-            Deteccao updatedDeteccao = deteccaoRepository.save(existingDeteccao);
-            return convertToDTO(updatedDeteccao);
-        });
+    public Optional<Deteccao> findById(Long id) {
+        return deteccaoRepository.findById(id);
     }
 
-    private DeteccaoDTO convertToDTO(Deteccao deteccao) {
-        DeteccaoDTO dto = new DeteccaoDTO();
-        dto.setIdDeteccao(deteccao.getIdDeteccao());
-        dto.setUrlImagem(deteccao.getUrlImagem());
-        dto.setDataDeteccao(deteccao.getDataDeteccao());
-        dto.setIdUsuario(deteccao.getUsuario().getIdUsuario());
-        dto.setIdLocalizacao(deteccao.getLocalizacao().getIdLocalizacao());
-        dto.setIdEspecie(deteccao.getEspecie().getIdEspecie());
-        return dto;
+    public List<Deteccao> findAll() {
+        return deteccaoRepository.findAll();
     }
 
-    private Deteccao convertToEntity(DeteccaoDTO dto) {
+    private Deteccao convertToEntity(DeteccaoDTO deteccaoDTO) {
         Deteccao deteccao = new Deteccao();
-        deteccao.setIdDeteccao(dto.getIdDeteccao());
-        deteccao.setUrlImagem(dto.getUrlImagem());
-        deteccao.setDataDeteccao(dto.getDataDeteccao());
-        deteccao.setUsuario(usuarioRepository.findById(dto.getIdUsuario()).orElse(null));
-        deteccao.setLocalizacao(localizacaoRepository.findById(dto.getIdLocalizacao()).orElse(null));
-        deteccao.setEspecie(especieRepository.findById(dto.getIdEspecie()).orElse(null));
+        deteccao.setUrlImagem(deteccaoDTO.getUrlImagem());
+        deteccao.setDataDeteccao(deteccaoDTO.getDataDeteccao());
+
+        Usuario usuario = usuarioRepository.findById(deteccaoDTO.getUsuarioId())
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+        deteccao.setUsuario(usuario);
+
+        Localizacao localizacao = localizacaoRepository.findById(deteccaoDTO.getLocalizacaoId())
+                .orElseThrow(() -> new IllegalArgumentException("Localização não encontrada"));
+        deteccao.setLocalizacao(localizacao);
+
+        Especie especie = especieRepository.findById(deteccaoDTO.getEspecieId())
+                .orElseThrow(() -> new IllegalArgumentException("Espécie não encontrada"));
+        deteccao.setEspecie(especie);
+
+        Set<Ong> ongs = deteccaoDTO.getOngIds().stream()
+                .map(id -> ongRepository.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("ONG não encontrada: " + id)))
+                .collect(Collectors.toSet());
+        deteccao.setOngs(ongs);
+
         return deteccao;
     }
-
-    private void updateEntityFromDTO(DeteccaoDTO dto, Deteccao deteccao) {
-        deteccao.setUrlImagem(dto.getUrlImagem());
-        deteccao.setDataDeteccao(dto.getDataDeteccao());
-        deteccao.setUsuario(usuarioRepository.findById(dto.getIdUsuario()).orElse(null));
-        deteccao.setLocalizacao(localizacaoRepository.findById(dto.getIdLocalizacao()).orElse(null));
-        deteccao.setEspecie(especieRepository.findById(dto.getIdEspecie()).orElse(null));
-    }
 }
-

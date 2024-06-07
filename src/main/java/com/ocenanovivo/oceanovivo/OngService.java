@@ -55,7 +55,11 @@ public class OngService {
         dto.setNome(ong.getNome());
         dto.setEmail(ong.getEmail());
         dto.setTelefone(ong.getTelefone());
-        dto.setIdDeteccoes(ong.getDeteccoes().stream().map(Deteccao::getIdDeteccao).collect(Collectors.toList()));
+        
+        if (ong.getDeteccoes() != null) {
+            dto.setIdDeteccoes(ong.getDeteccoes().stream().map(Deteccao::getIdDeteccao).collect(Collectors.toList()));
+        }
+
         return dto;
     }
 
@@ -66,7 +70,11 @@ public class OngService {
         ong.setNome(dto.getNome());
         ong.setEmail(dto.getEmail());
         ong.setTelefone(dto.getTelefone());
-        ong.setDeteccoes(dto.getIdDeteccoes().stream().map(id -> deteccaoRepository.findById(id).orElse(null)).collect(Collectors.toList()));
+        
+        if (dto.getIdDeteccoes() != null) {
+            ong.setDeteccoes(dto.getIdDeteccoes().stream().map(id -> deteccaoRepository.findById(id).orElse(null)).collect(Collectors.toList()));
+        }
+
         return ong;
     }
 
@@ -75,7 +83,10 @@ public class OngService {
         ong.setNome(dto.getNome());
         ong.setEmail(dto.getEmail());
         ong.setTelefone(dto.getTelefone());
-        ong.setDeteccoes(dto.getIdDeteccoes().stream().map(id -> deteccaoRepository.findById(id).orElse(null)).collect(Collectors.toList()));
+        
+        if (dto.getIdDeteccoes() != null) {
+            ong.setDeteccoes(dto.getIdDeteccoes().stream().map(id -> deteccaoRepository.findById(id).orElse(null)).collect(Collectors.toList()));
+        }
     }
 }
 

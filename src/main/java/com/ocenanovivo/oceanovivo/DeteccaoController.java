@@ -1,62 +1,59 @@
 package com.ocenanovivo.oceanovivo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/deteccoes")
 public class DeteccaoController {
 
+    private final DeteccaoService deteccaoService;
+
     @Autowired
-    private DeteccaoService deteccaoService;
+    public DeteccaoController(DeteccaoService deteccaoService) {
+        this.deteccaoService = deteccaoService;
+    }
 
     @GetMapping
-    public List<EntityModel<DeteccaoDTO>> getAllDeteccoes() {
-        return deteccaoService.findAll().stream()
-                .map(dto -> EntityModel.of(dto,
-                        WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getDeteccaoById(dto.getIdDeteccao())).withSelfRel(),
-                        WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getAllDeteccoes()).withRel("deteccoes")))
-                .collect(Collectors.toList());
+    public List<Deteccao> getAllDeteccoes() {
+        return deteccaoService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<DeteccaoDTO>> getDeteccaoById(@PathVariable Long id) {
-        Optional<DeteccaoDTO> deteccao = deteccaoService.findById(id);
-        return deteccao.map(dto -> ResponseEntity.ok(EntityModel.of(dto,
-                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getDeteccaoById(dto.getIdDeteccao())).withSelfRel(),
-                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getAllDeteccoes()).withRel("deteccoes"))))
+    public ResponseEntity<Deteccao> getDeteccaoById(@PathVariable Long id) {
+        return deteccaoService.findById(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<EntityModel<DeteccaoDTO>> createDeteccao(@RequestBody DeteccaoDTO deteccaoDTO) {
-        DeteccaoDTO createdDeteccao = deteccaoService.save(deteccaoDTO);
-        EntityModel<DeteccaoDTO> resource = EntityModel.of(createdDeteccao,
-                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getDeteccaoById(createdDeteccao.getIdDeteccao())).withSelfRel());
-        return ResponseEntity.created(URI.create("/deteccoes/" + createdDeteccao.getIdDeteccao())).body(resource);
+    public ResponseEntity<Deteccao> createDeteccao(@RequestBody DeteccaoDTO deteccaoDTO) {
+        try {
+            Deteccao createdDeteccao = deteccaoService.save(deteccaoDTO);
+            return ResponseEntity.ok(createdDeteccao);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EntityModel<DeteccaoDTO>> updateDeteccao(@PathVariable Long id, @RequestBody DeteccaoDTO deteccaoDTO) {
-        Optional<DeteccaoDTO> updatedDeteccao = deteccaoService.update(id, deteccaoDTO);
-        return updatedDeteccao.map(dto -> ResponseEntity.ok(EntityModel.of(dto,
-                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getDeteccaoById(dto.getIdDeteccao())).withSelfRel(),
-                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DeteccaoController.class).getAllDeteccoes()).withRel("deteccoes"))))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Deteccao> updateDeteccao(@PathVariable Long id, @RequestBody DeteccaoDTO deteccaoDTO) {
+        try {
+            Deteccao updatedDeteccao = deteccaoService.update(id, deteccaoDTO);
+            return ResponseEntity.ok(updatedDeteccao);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDeteccao(@PathVariable Long id) {
-        deteccaoService.deleteById(id);
+        deteccaoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
+
 
