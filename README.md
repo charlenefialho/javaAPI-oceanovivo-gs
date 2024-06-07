@@ -13,7 +13,7 @@ A API de Identificação Automática de Espécies Marinhas é um sistema baseado
 - Banco de Dados: OracleDatabse
 
 ## Endpoints da API
-[Arquivo do Postman para baixar e importar](https://github.com/charlenefialho/LeadTechAPI/blob/master/api-dotnet-leadtech.postman_collection.json)
+[Arquivo do Postman para baixar e importar](https://github.com/charlenefialho/javaAPI-oceanovivo-gs/blob/main/docs-files/api-java-oceano-vivo.postman_collection.json)
 
 ## Instalação e Uso
 1. Clone este repositório.
