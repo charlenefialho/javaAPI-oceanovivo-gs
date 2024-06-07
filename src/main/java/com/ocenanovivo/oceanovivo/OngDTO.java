@@ -27,6 +27,10 @@ public class OngDTO {
     @NotBlank(message = "Telefone é obrigatório")
     @Size(max = 20, message = "Telefone deve ter no máximo 20 caracteres")
     private String telefone;
+    
+    @NotBlank(message = "categoria animal é obrigatório")
+    private String categoriaAnimal;
+    
     private List<Long> idDeteccoes;
 }
 

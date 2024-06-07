@@ -24,6 +24,8 @@ public class Ong {
     private String nome;
     private String email;
     private String telefone;
+    
+    private String categoriaAnimal;
 
     @ManyToMany
     @JoinTable(

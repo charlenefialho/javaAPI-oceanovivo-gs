@@ -27,6 +27,15 @@ public class OngController {
 
     @Autowired
     private OngService ongService;
+    
+    @GetMapping("/categoria-animal/{categoria}")
+    public ResponseEntity<List<Ong>> getOngsByCategoriaAnimal(@PathVariable String categoria) {
+        List<Ong> ongs = ongService.findByCategoriaAnimal(categoria);
+        if (ongs.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ongs);
+    }
 
     @GetMapping
     public ResponseEntity<List<EntityModel<OngDTO>>> getAllOngs() {

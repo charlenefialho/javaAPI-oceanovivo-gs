@@ -15,6 +15,10 @@ public class OngService {
 
     @Autowired
     private DeteccaoRepository deteccaoRepository;
+    
+    public List<Ong> findByCategoriaAnimal(String categoriaAnimal) {
+        return ongRepository.findByCategoriaAnimal(categoriaAnimal);
+    }
 
     public List<OngDTO> findAll() {
         return ongRepository.findAll().stream()
@@ -55,6 +59,7 @@ public class OngService {
         dto.setNome(ong.getNome());
         dto.setEmail(ong.getEmail());
         dto.setTelefone(ong.getTelefone());
+        dto.setCategoriaAnimal(ong.getCategoriaAnimal()); 
         
         if (ong.getDeteccoes() != null) {
             dto.setIdDeteccoes(ong.getDeteccoes().stream().map(Deteccao::getIdDeteccao).collect(Collectors.toList()));
@@ -70,6 +75,7 @@ public class OngService {
         ong.setNome(dto.getNome());
         ong.setEmail(dto.getEmail());
         ong.setTelefone(dto.getTelefone());
+        ong.setCategoriaAnimal(dto.getCategoriaAnimal());
         
         if (dto.getIdDeteccoes() != null) {
             ong.setDeteccoes(dto.getIdDeteccoes().stream().map(id -> deteccaoRepository.findById(id).orElse(null)).collect(Collectors.toList()));
