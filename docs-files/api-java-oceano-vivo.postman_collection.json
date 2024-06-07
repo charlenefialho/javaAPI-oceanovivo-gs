@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "c55342f3-2b74-4588-9033-9950fbaaf897",
+		"name": "api-java-oceano-vivo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19973173",
+		"_collection_link": "https://crimson-sunset-723237.postman.co/workspace/New-Team-Workspace~4ed1f29e-3683-4f85-8088-ed690aa8a8f0/collection/19973173-c55342f3-2b74-4588-9033-9950fbaaf897?action=share&source=collection_link&creator=19973173"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getAll-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"João Silva\",\r\n  \"email\": \"joao.silva@example.com\",\r\n  \"senha\": \"password123\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/usuarios/1"
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"João Silva Atualizado\",\r\n  \"email\": \"joao.silva.atualizado@example.com\",\r\n  \"senha\": \"password123\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/usuarios/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/api/usuarios/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ong",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/ongs"
+					},
+					"response": []
+				},
+				{
+					"name": "create-ong",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"12345678901234\",\r\n    \"nome\": \"ONG Teste\",\r\n    \"email\": \"ong@teste.com\",\r\n    \"telefone\": \"(00) 1234-5678\",\r\n    \"categoriaAnimal\": \"marinho\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/ongs"
+					},
+					"response": []
+				},
+				{
+					"name": "update-ong",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"98765432109876\",\r\n    \"nome\": \"ONG Atualizada\",\r\n    \"email\": \"novaong@teste.com\",\r\n    \"telefone\": \"(00) 9876-5432\",\r\n    \"categoriaAnimal\": \"marinho\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/ongs/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/ongs/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-ong",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/ongs/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get-ongs-by-categoria-animal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/ongs/categoria-animal/marinho"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Localizacao",
+			"item": [
+				{
+					"name": "create-localizacao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"latitude\": \"-23.5505\",\r\n  \"longitude\": \"-46.6333\",\r\n  \"cidade\": \"São Paulo\",\r\n  \"estado\": \"São Paulo\",\r\n  \"pais\": \"Brasil\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/localizacoes"
+					},
+					"response": []
+				},
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/localizacoes"
+					},
+					"response": []
+				},
+				{
+					"name": "update-localizacao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"latitude\": \"-22.9068\",\r\n  \"longitude\": \"-43.1729\",\r\n  \"cidade\": \"Rio de Janeiro\",\r\n  \"estado\": \"Rio de Janeiro\",\r\n  \"pais\": \"Brasil\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/localizacoes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-localizacao",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/localizacoes/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/categorias"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-categoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/categorias/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-categoria-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/categorias/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create-categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Marinho\",\r\n  \"habitat\": \"Oceano\",\r\n  \"reino\": \"Animalia\",\r\n  \"familia\": \"Lamnidae\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/categorias"
+					},
+					"response": []
+				},
+				{
+					"name": "update-categorias",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Marinho\",\r\n  \"habitat\": \"Oceano, Rio\",\r\n  \"reino\": \"Animalia\",\r\n  \"familia\": \"Lamnidae, Carcharhinidae\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/categorias/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Situacao",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/situacoes"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-situacao",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/situacoes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create-situacao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"riscoExtincao\": true,\r\n  \"invasora\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/situacoes"
+					},
+					"response": []
+				},
+				{
+					"name": "update-situacao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"riscoExtincao\": false,\r\n  \"invasora\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/situacoes/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Especie",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/especies"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-especie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/especies/3"
+					},
+					"response": []
+				},
+				{
+					"name": "create-especies",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nomeComum\": \"Nome Comum da Espécie\",\r\n  \"nomeCientifico\": \"Nome Científico da Espécie\",\r\n  \"descricao\": \"Descrição da Espécie\",\r\n  \"idCategoria\": 1,\r\n  \"idSituacao\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/especies"
+					},
+					"response": []
+				},
+				{
+					"name": "update-especies",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nomeComum\": \"Novo Nome Comum\",\r\n  \"nomeCientifico\": \"Novo Nome Científico\",\r\n  \"descricao\": \"Nova Descrição\",\r\n  \"idCategoria\": 1,\r\n  \"idSituacao\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/especies/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deteccoes",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/deteccoes"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-deteccao",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/deteccoes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create-deteccao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"urlImagem\": \"https://exemplo.com/imagem.jpg\",\r\n    \"dataDeteccao\": \"2024-06-07T12:00:00\",\r\n    \"usuarioId\": 1,\r\n    \"localizacaoId\": 1,\r\n    \"especieId\": 1,\r\n    \"ongIds\": [1, 2, 3]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/deteccoes"
+					},
+					"response": []
+				},
+				{
+					"name": "update-deteccao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nomeComum\": \"Novo Nome Comum\",\r\n  \"nomeCientifico\": \"Novo Nome Científico\",\r\n  \"descricao\": \"Nova Descrição\",\r\n  \"idCategoria\": 1,\r\n  \"idSituacao\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/deteccoes/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
